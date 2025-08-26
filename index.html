@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonido Star Miller - Experiencias Sonideras Inolvidables</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
@@ -21,8 +21,7 @@
             font-family: 'Arial', sans-serif;
             background-color: var(--color-fondo);
             color: var(--color-texto);
-            margin: 0;
-            padding-bottom: 100px;
+            margin-bottom: 100px;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(255, 255, 0, 0.05) 0%, transparent 20%),
@@ -43,12 +42,12 @@
         
         .light-beam {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255,255,0,0.2) 0%, rgba(255,255,0,0) 70%);
             animation: lightMovement 15s infinite alternate;
-            filter: blur(20px);
+            filter: blur(30px);
         }
         
         .light-beam:nth-child(1) {
@@ -75,53 +74,53 @@
         
         @keyframes lightMovement {
             0% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(20px, 10px) scale(1.1); }
-            50% { transform: translate(-10px, 20px) scale(0.9); }
-            75% { transform: translate(30px, -10px) scale(1.05); }
-            100% { transform: translate(-20px, 10px) scale(0.95); }
+            25% { transform: translate(50px, 30px) scale(1.2); }
+            50% { transform: translate(-30px, 60px) scale(0.8); }
+            75% { transform: translate(70px, -20px) scale(1.1); }
+            100% { transform: translate(-50px, 30px) scale(0.9); }
         }
         
         /* Estructura de sonido */
         .speaker-decoration {
-            position: fixed;
-            width: 80px;
-            height: 160px;
+            position: absolute;
+            width: 100px;
+            height: 200px;
             background: linear-gradient(to bottom, #333, #000);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
             z-index: -1;
         }
         
         .speaker-decoration.left {
-            left: 10px;
-            top: 20%;
+            left: -50px;
+            top: 30%;
             transform: perspective(500px) rotateY(20deg);
         }
         
         .speaker-decoration.right {
-            right: 10px;
-            top: 20%;
+            right: -50px;
+            top: 30%;
             transform: perspective(500px) rotateY(-20deg);
         }
         
         .speaker-decoration::before {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
             background: radial-gradient(circle, #444, #222);
-            border-radius: 4px;
+            border-radius: 5px;
         }
         
         .speaker-decoration::after {
             content: '';
             position: absolute;
-            top: 24px;
-            left: 24px;
-            right: 24px;
-            bottom: 24px;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
             background: radial-gradient(circle, #555, #333);
             border-radius: 50%;
         }
@@ -130,11 +129,11 @@
         header {
             background: linear-gradient(135deg, #000, #222);
             color: var(--color-texto);
-            padding: 15px 0;
+            padding: 20px 0;
             position: relative;
             overflow: hidden;
-            border-bottom: 2px solid var(--color-secundario);
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
+            border-bottom: 3px solid var(--color-secundario);
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
         }
         
         header::before {
@@ -143,7 +142,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, 
                 transparent, 
                 var(--color-terciario), 
@@ -159,13 +158,13 @@
         }
         
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             text-shadow: 
-                0 0 8px var(--color-secundario),
-                0 0 16px var(--color-terciario),
-                0 0 24px rgba(255, 255, 255, 0.4);
-            letter-spacing: 1.5px;
+                0 0 10px var(--color-secundario),
+                0 0 20px var(--color-terciario),
+                0 0 30px rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
             position: relative;
             display: inline-block;
         }
@@ -173,54 +172,42 @@
         header h1::after {
             content: '★';
             position: absolute;
-            right: -20px;
-            top: -12px;
-            font-size: 1.2rem;
+            right: -25px;
+            top: -15px;
+            font-size: 1.5rem;
             color: var(--color-secundario);
             animation: starPulse 2s infinite;
         }
         
-        @keyframes starPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
         /* Navegación estilo consola de sonido */
-        .nav {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
         .nav-link {
             color: var(--color-texto) !important;
             font-weight: bold;
             transition: all 0.3s ease;
             position: relative;
-            margin: 5px;
-            border-radius: 4px;
+            margin: 0 5px;
+            border-radius: 5px;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--color-secundario);
-            padding: 6px 12px !important;
-            font-size: 0.9rem;
+            padding: 8px 15px !important;
         }
         
         .nav-link:hover, .nav-link.active {
             color: var(--color-secundario) !important;
             background: rgba(255, 255, 0, 0.3) !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.3);
         }
         
         .nav-link::before {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 1.5px solid var(--color-secundario);
-            border-radius: 6px;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--color-secundario);
+            border-radius: 8px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -232,17 +219,17 @@
         /* Secciones estilo escenario */
         section {
             display: none;
-            padding: 40px 15px;
+            padding: 60px 0;
             background: rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px;
-            border-radius: 8px;
+            margin-bottom: 30px;
+            border-radius: 10px;
             box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.7),
-                0 0 30px rgba(255, 255, 0, 0.1);
+                0 0 20px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255, 255, 0, 0.1);
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 0, 0.2);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
         }
         
         section.active {
@@ -261,7 +248,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, 
                 transparent, 
                 var(--color-secundario), 
@@ -272,14 +259,14 @@
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: var(--color-secundario);
-            text-shadow: 0 0 8px rgba(255, 255, 0, 0.4);
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
             position: relative;
             display: inline-block;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
         
         h2::after {
@@ -288,7 +275,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, 
                 transparent, 
                 var(--color-secundario), 
@@ -302,18 +289,18 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20px;
+            height: 30px;
             display: flex;
             align-items: flex-end;
             justify-content: space-around;
-            padding: 0 10px;
+            padding: 0 20px;
             opacity: 0.3;
         }
         
         .equalizer-bar {
-            width: 4px;
+            width: 6px;
             background: linear-gradient(to top, var(--color-secundario), var(--color-terciario));
-            border-radius: 2px 2px 0 0;
+            border-radius: 3px 3px 0 0;
             animation: equalize 1.5s infinite ease-in-out;
         }
         
@@ -325,23 +312,23 @@
         /* Botón de WhatsApp mejorado */
         .btn-whatsapp {
             position: fixed;
-            bottom: 80px;
-            right: 15px;
+            bottom: 100px;
+            right: 30px;
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: white;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             text-align: center;
-            font-size: 30px;
+            font-size: 36px;
             box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(37, 211, 102, 0.5);
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(37, 211, 102, 0.5);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1.5px solid white;
+            border: 2px solid white;
             animation: pulse 2s infinite;
             transition: all 0.3s ease;
         }
@@ -349,8 +336,8 @@
         .btn-whatsapp:hover {
             transform: scale(1.1) rotate(10deg);
             box-shadow: 
-                0 6px 15px rgba(0, 0, 0, 0.4),
-                0 0 20px rgba(37, 211, 102, 0.7);
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(37, 211, 102, 0.7);
         }
         
         @keyframes pulse {
@@ -361,10 +348,10 @@
         
         /* Carrusel mejorado */
         .carousel {
-            border: 2px solid var(--color-secundario);
-            border-radius: 10px;
+            border: 3px solid var(--color-secundario);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
             position: relative;
         }
         
@@ -385,49 +372,42 @@
             pointer-events: none;
         }
         
-        .carousel img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            max-height: 500px;
-        }
-        
         .carousel-control-prev,
         .carousel-control-next {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
-            border: 1.5px solid var(--color-secundario);
+            border: 2px solid var(--color-secundario);
         }
         
         /* Tarjetas de testimonios mejoradas */
         .testimonial-card {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid var(--color-secundario);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
         .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(255, 255, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 0, 0.3);
             border-color: var(--color-terciario);
         }
         
         .testimonial-card::before {
             content: '"';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            font-size: 50px;
+            top: 10px;
+            left: 10px;
+            font-size: 60px;
             color: rgba(255, 255, 0, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
@@ -436,21 +416,21 @@
         .testimonial-card::after {
             content: '"';
             position: absolute;
-            bottom: 8px;
-            right: 8px;
-            font-size: 50px;
+            bottom: 10px;
+            right: 10px;
+            font-size: 60px;
             color: rgba(255, 255, 0, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
         }
         
         .testimonial-card img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin-bottom: 10px;
-            border: 2px solid var(--color-secundario);
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+            margin-bottom: 15px;
+            border: 3px solid var(--color-secundario);
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
         }
         
         /* Formulario estilo consola */
@@ -458,15 +438,14 @@
             background-color: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--color-secundario);
             color: var(--color-texto);
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 5px;
         }
         
         .form-control:focus {
             background-color: rgba(0, 0, 0, 0.7);
             border-color: var(--color-terciario);
             color: var(--color-texto);
-            box-shadow: 0 0 8px rgba(255, 255, 0, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
         }
         
         .btn-primary {
@@ -475,34 +454,34 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 8px 20px;
-            border-radius: 25px;
-            box-shadow: 0 4px 12px rgba(255, 255, 0, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.3);
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 255, 0, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 0, 0.5);
         }
         
         /* Footer mejorado */
         footer {
             background: linear-gradient(135deg, #000, #222);
             color: var(--color-texto);
-            padding: 15px 0;
+            padding: 20px 0;
             position: fixed;
             bottom: 0;
             width: 100%;
             z-index: 1000;
-            border-top: 2px solid var(--color-secundario);
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
+            border-top: 3px solid var(--color-secundario);
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
         }
         
         footer p {
             margin: 0;
-            font-size: 0.9rem;
-            text-shadow: 0 0 8px rgba(255, 255, 0, 0.3);
+            font-size: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
         }
         
         footer a {
@@ -513,7 +492,7 @@
         
         footer a:hover {
             color: var(--color-terciario);
-            text-shadow: 0 0 8px rgba(255, 255, 0, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
         }
         
         /* Efecto de sonido visual */
@@ -522,7 +501,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -530,8 +509,8 @@
         }
         
         .wave-bar {
-            width: 3px;
-            height: 8px;
+            width: 4px;
+            height: 10px;
             background: var(--color-secundario);
             margin: 0 2px;
             border-radius: 2px;
@@ -540,20 +519,20 @@
         
         @keyframes wave {
             0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(2.5); }
+            50% { transform: scaleY(3); }
         }
         
         /* Efecto de disco giratorio */
         .vinyl-record {
-            position: fixed;
-            right: 10px;
-            bottom: 80px;
-            width: 100px;
-            height: 100px;
+            position: absolute;
+            right: -50px;
+            bottom: -50px;
+            width: 150px;
+            height: 150px;
             background: linear-gradient(45deg, #111, #000);
             border-radius: 50%;
-            border: 3px solid #333;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            border: 5px solid #333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
             z-index: -1;
             animation: spin 20s linear infinite;
             opacity: 0.3;
@@ -565,11 +544,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             background: linear-gradient(45deg, var(--color-secundario), var(--color-terciario));
             border-radius: 50%;
-            border: 1.5px solid #000;
+            border: 2px solid #000;
         }
         
         .vinyl-record::after {
@@ -578,8 +557,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background: #000;
             border-radius: 50%;
         }
@@ -592,11 +571,11 @@
         /* Efecto de botones de consola */
         .console-button {
             display: inline-block;
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            margin: 0 4px;
-            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+            margin: 0 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
         }
         
         .console-button.red {
@@ -613,10 +592,10 @@
         
         /* Efecto de nivel de sonido */
         .sound-level {
-            height: 8px;
+            height: 10px;
             background: linear-gradient(90deg, #080, #0f0, var(--color-secundario), #f00);
-            border-radius: 4px;
-            margin: 8px 0;
+            border-radius: 5px;
+            margin: 10px 0;
             position: relative;
             overflow: hidden;
         }
@@ -643,179 +622,38 @@
         /* Efecto de cableado */
         .cable-decoration {
             position: absolute;
-            width: 80px;
-            height: 200px;
-            border-left: 2px dashed rgba(255, 255, 0, 0.3);
-            border-right: 2px dashed rgba(255, 255, 0, 0.3);
+            width: 100px;
+            height: 300px;
+            border-left: 3px dashed rgba(255, 255, 0, 0.3);
+            border-right: 3px dashed rgba(255, 255, 0, 0.3);
             left: 50%;
-            top: -80px;
-            transform: translateX(-50%);
+            top: -100px;
             z-index: -1;
         }
         
         /* Efecto ripple para navegación */
         @keyframes ripple {
             to {
-                transform: scale(1.5);
+                transform: scale(2);
                 opacity: 0;
             }
         }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            body {
-                padding-bottom: 120px;
-            }
-            
             header h1 {
-                font-size: 1.8rem;
-            }
-            
-            header h1::after {
-                right: -15px;
-                top: -10px;
-                font-size: 1rem;
-            }
-            
-            .nav-link {
-                font-size: 0.8rem;
-                padding: 5px 10px !important;
-                margin: 3px;
-            }
-            
-            section {
-                padding: 30px 10px;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
             
             .speaker-decoration {
-                width: 60px;
-                height: 120px;
-            }
-            
-            .speaker-decoration::before {
-                top: 6px;
-                left: 6px;
-                right: 6px;
-                bottom: 6px;
-            }
-            
-            .speaker-decoration::after {
-                top: 18px;
-                left: 18px;
-                right: 18px;
-                bottom: 18px;
+                display: none;
             }
             
             .vinyl-record {
-                width: 80px;
-                height: 80px;
-                right: 10px;
-                bottom: 90px;
-            }
-            
-            .vinyl-record::before {
-                width: 16px;
-                height: 16px;
-            }
-            
-            .vinyl-record::after {
-                width: 6px;
-                height: 6px;
-            }
-            
-            .btn-whatsapp {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-                bottom: 70px;
-                right: 10px;
-            }
-            
-            .carousel img {
-                max-height: 300px;
-            }
-            
-            .carousel-control-prev,
-            .carousel-control-next {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .testimonial-card {
-                padding: 15px;
-            }
-            
-            .testimonial-card img {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .form-control {
-                font-size: 0.8rem;
-            }
-            
-            .sound-level {
-                height: 6px;
-            }
-            
-            .equalizer-container {
-                height: 15px;
-            }
-            
-            .equalizer-bar {
-                width: 3px;
-            }
-            
-            .sound-wave {
-                height: 15px;
-            }
-            
-            .wave-bar {
-                width: 2px;
-                height: 6px;
-            }
-            
-            footer p {
-                font-size: 0.8rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                margin: 2px 0;
-            }
-            
-            .carousel img {
-                max-height: 250px;
-            }
-            
-            .row {
-                margin-left: 0;
-                margin-right: 0;
-            }
-            
-            .col-md-6, .col-md-4 {
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-            
-            .embed-responsive {
-                margin-bottom: 15px;
+                width: 100px;
+                height: 100px;
+                right: -30px;
+                bottom: -30px;
             }
         }
     </style>
@@ -867,20 +705,20 @@
         <section id="inicio" class="active">
             <div class="vinyl-record"></div>
             <div class="equalizer-container">
-                <div class="equalizer-bar" style="animation-delay: 0s; height: 20%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.2s; height: 50%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.4s; height: 30%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.6s; height: 70%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.8s; height: 15%"></div>
-                <div class="equalizer-bar" style="animation-delay: 1s; height: 40%"></div>
-                <div class="equalizer-bar" style="animation-delay: 1.2s; height: 20%"></div>
+                <div class="equalizer-bar" style="animation-delay: 0s; height: 30%"></div>
+                <div class="equalizer-bar" style="animation-delay: 0.2s; height: 70%"></div>
+                <div class="equalizer-bar" style="animation-delay: 0.4s; height: 40%"></div>
+                <div class="equalizer-bar" style="animation-delay: 0.6s; height: 90%"></div>
+                <div class="equalizer-bar" style="animation-delay: 0.8s; height: 20%"></div>
+                <div class="equalizer-bar" style="animation-delay: 1s; height: 60%"></div>
+                <div class="equalizer-bar" style="animation-delay: 1.2s; height: 30%"></div>
             </div>
             <div class="container">
                 <h2>BIENVENIDOS A SONIDO STAR MILLER</h2>
-                <div class="sound-level" style="width: 80%; margin: 15px auto;"></div>
+                <div class="sound-level" style="width: 80%; margin: 20px auto;"></div>
                 <p class="lead">Transformamos tus eventos en experiencias sonideras inolvidables con la mejor tecnología y profesionalismo.</p>
                 <p>En <strong>Sonido Star Miller</strong>, ubicados en Santiago Nopala, Puebla, nos especializamos en brindar servicios de audio profesional, iluminación robótica y video de alta calidad para todo tipo de eventos. Desde bodas y XV años hasta eventos corporativos, nuestro equipo profesional y tecnología de vanguardia garantizan un espectáculo único.</p>
-                <div class="text-center mt-3">
+                <div class="text-center mt-4">
                     <span class="console-button red"></span>
                     <span class="console-button yellow"></span>
                     <span class="console-button green"></span>
@@ -894,11 +732,11 @@
             <div class="container">
                 <h2>SOBRE NOSOTROS</h2>
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-md-6">
                         <p>Somos <strong>Sonido Star Miller</strong>, una empresa con más de 15 años de experiencia en el mundo del entretenimiento audiovisual. Nos enorgullece ofrecer servicios de calidad en Santiago Nopala, Puebla, y sus alrededores.</p>
                         <p>Nuestro equipo está formado por profesionales apasionados por la música y la tecnología, comprometidos a hacer de cada evento una experiencia única.</p>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-md-6">
                         <div class="sound-level"></div>
                         <h3>NUESTRA FILOSOFÍA</h3>
                         <p>Creemos que cada evento merece un sonido impecable, una iluminación espectacular y una atención personalizada que haga la diferencia.</p>
@@ -911,28 +749,28 @@
         <section id="equipo">
             <div class="container">
                 <h2>NUESTRO EQUIPO TECNOLÓGICO</h2>
-                <div class="sound-level" style="width: 60%; margin: 0 auto 20px;"></div>
+                <div class="sound-level" style="width: 60%; margin: 0 auto 30px;"></div>
                 
                 <div class="row">
-                    <div class="col-12 col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="testimonial-card text-center">
-                            <i class="fas fa-volume-up fa-2x mb-2" style="color: var(--color-secundario);"></i>
+                            <i class="fas fa-volume-up fa-3x mb-3" style="color: var(--color-secundario);"></i>
                             <h3>SISTEMA DE AUDIO</h3>
                             <p>Bocinas profesionales de alta potencia, mezcladoras digitales, micrófonos inalámbricos y procesadores de sonido para una calidad auditiva excepcional.</p>
                             <div class="sound-level"></div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="testimonial-card text-center">
-                            <i class="fas fa-lightbulb fa-2x mb-2" style="color: var(--color-secundario);"></i>
+                            <i class="fas fa-lightbulb fa-3x mb-3" style="color: var(--color-secundario);"></i>
                             <h3>ILUMINACIÓN ROBÓTICA</h3>
                             <p>Luces inteligentes, láseres, máquinas de humo y efectos especiales que sincronizan con la música para crear ambientes espectaculares.</p>
                             <div class="sound-level"></div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="testimonial-card text-center">
-                            <i class="fas fa-video fa-2x mb-2" style="color: var(--color-secundario);"></i>
+                            <i class="fas fa-video fa-3x mb-3" style="color: var(--color-secundario);"></i>
                             <h3>VIDEO Y PROYECCIÓN</h3>
                             <p>Pantallas LED, proyectores de alta definición y sistemas de visualización para mostrar tus videos, fotos o transmisiones en vivo.</p>
                             <div class="sound-level"></div>
@@ -980,8 +818,8 @@
                     </a>
                 </div>
                 
-                <div class="row mt-3">
-                    <div class="col-12 col-md-4 mb-3">
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card bg-dark border border-warning">
                             <img src="MS.jpg" class="card-img-top" alt="Evento 4">
                             <div class="card-body">
@@ -990,7 +828,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="card bg-dark border border-warning">
                             <img src="ST.jpg" class="card-img-top" alt="Evento 5">
                             <div class="card-body">
@@ -999,7 +837,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="card bg-dark border border-warning">
                             <img src="SM.jpg" class="card-img-top" alt="Evento 6">
                             <div class="card-body">
@@ -1007,67 +845,81 @@
                                 <p class="card-text">Sonido para estadio y pantallas gigantes</p>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
-                
-                <h3 class="mt-4">Videos</h3>
-                <div class="row">
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="0.0.mp4" allowfullscreen></iframe>
+            </div>
+            <!-- Galería de videos -->
+            <h3 class="mt-5 mb-3 text-center">Videos</h3>
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-around align-items-stretch">
+                    <div class="p-2" style="flex: 1 1 320px; max-width: 400px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="0.0.mp4" controls preload="none"></video>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="0.1.mp4" allowfullscreen></iframe>
+                    <div class="p-2" style="flex: 1 1 220px; max-width: 300px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="0.1.mp4" controls preload="none"></video>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="1.mp4" allowfullscreen></iframe>
+                    <div class="p-2" style="flex: 1 1 280px; max-width: 350px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="1.mp4" controls preload="none"></video>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="2.mp4" allowfullscreen></iframe>
+                    <div class="p-2" style="flex: 1 1 180px; max-width: 250px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="2.mp4" controls preload="none"></video>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="3.mp4" allowfullscreen></iframe>
+                    <div class="p-2" style="flex: 1 1 320px; max-width: 400px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="3.mp4" controls preload="none"></video>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="4.mp4" allowfullscreen></iframe>
+                    <div class="p-2" style="flex: 1 1 220px; max-width: 300px;">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <video class="gallery-video embed-responsive-item" src="4.mp4" controls preload="none"></video>
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                // Permite que solo un video se reproduzca a la vez
+                document.querySelectorAll('.gallery-video').forEach(function(video) {
+                    video.addEventListener('play', function() {
+                        document.querySelectorAll('.gallery-video').forEach(function(other) {
+                            if (other !== video) {
+                                other.pause();
+                            }
+                        });
+                    });
+                });
+            </script>
         </section>
 
         <!-- Contacto -->
         <section id="contacto">
             <div class="container">
                 <h2>CONTÁCTANOS</h2>
-                <div class="sound-level" style="width: 50%; margin: 0 auto 20px;"></div>
+                <div class="sound-level" style="width: 50%; margin: 0 auto 30px;"></div>
                 
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-md-6">
                         <h3><i class="fas fa-map-marker-alt text-warning"></i> UBICACIÓN</h3>
                         <p>Calle Libertad #60, Santiago Nopala, Puebla</p>
                         
-                        <h3 class="mt-3"><i class="fas fa-phone text-warning"></i> TELÉFONOS</h3>
+                        <h3 class="mt-4"><i class="fas fa-phone text-warning"></i> TELÉFONOS</h3>
                         <p>
                             <a href="tel:2381973451" class="text-warning">238 197 3451</a><br>
                             <a href="tel:2382202136" class="text-warning">238 220 2136</a><br>
                             <a href="tel:2382519320" class="text-warning">238 251 9320</a>
                         </p>
                         
-                        <h3 class="mt-3"><i class="fas fa-envelope text-warning"></i> CORREO</h3>
+                        <h3 class="mt-4"><i class="fas fa-envelope text-warning"></i> CORREO</h3>
                         <p><a href="mailto:marcosgarcia2del2004g@gmail.com" class="text-warning">marcosgarcia2del2004g@gmail.com</a></p>
                         
-                        <h3 class="mt-3"><i class="fas fa-share-alt text-warning"></i> REDES SOCIALES</h3>
+                        <h3 class="mt-4"><i class="fas fa-share-alt text-warning"></i> REDES SOCIALES</h3>
                         <a href="https://www.facebook.com/share/18nAW63qB9/" target="_blank" class="btn btn-dark mr-2 mb-2">
                             <i class="fab fa-facebook-f"></i> Facebook
                         </a>
@@ -1075,40 +927,73 @@
                             <i class="fab fa-instagram"></i> Instagram
                         </a>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="card bg-dark border border-warning">
-                            <div class="card-body">
-                                <h3 class="card-title text-warning">SOLICITA TU COTIZACIÓN</h3>
-                                <form id="whatsappForm">
-                                    <div class="form-group">
-                                        <label for="nombre">Nombre completo *</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono *</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="evento">Tipo de evento *</label>
-                                        <select class="form-control" id="evento" name="evento" required>
-                                            <option value="">Selecciona...</option>
-                                            <option value="Boda">Boda</option>
-                                            <option value="XV Años">XV Años</option>
-                                            <option value="Evento Corporativo">Evento Corporativo</option>
-                                            <option value="Fiesta Privada">Fiesta Privada</option>
-                                            <option value="Otro">Otro</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="mensaje">Detalles del evento *</label>
-                                        <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required placeholder="Fecha, lugar, número de invitados, etc."></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning btn-block">
-                                        <i class="fab fa-whatsapp mr-2"></i> ENVIAR POR WHATSAPP
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <!-- Reemplaza la sección del formulario actual con este código -->
+<div class="card bg-dark border border-warning">
+    <div class="card-body">
+        <h3 class="card-title text-warning">SOLICITA TU COTIZACIÓN</h3>
+        <form id="whatsappForm">
+            <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="evento">Tipo de evento *</label>
+                <select class="form-control" id="evento" name="evento" required>
+                    <option value="">Selecciona...</option>
+                    <option value="Boda">Boda</option>
+                    <option value="XV Años">XV Años</option>
+                    <option value="Evento Corporativo">Evento Corporativo</option>
+                    <option value="Fiesta Privada">Fiesta Privada</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Detalles del evento *</label>
+                <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required placeholder="Fecha, lugar, número de invitados, etc."></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning btn-block">
+                <i class="fab fa-whatsapp mr-2"></i> ENVIAR POR WHATSAPP
+            </button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Datos del formulario
+        const nombre = document.getElementById('nombre').value;
+        const telefonoCliente = document.getElementById('telefono').value;
+        const evento = document.getElementById('evento').value;
+        const mensaje = document.getElementById('mensaje').value;
+        
+        // Tu número en formato internacional (sin +, guiones o espacios)
+        const tuNumeroWhatsApp = '522381973451'; // Código de país +52 y tu número 2382105647
+        
+        // Mensaje estructurado para WhatsApp
+        const textoWhatsApp = 
+            `*NUEVA SOLICITUD DE COTIZACIÓN*%0A%0A` +
+            `*Nombre:* ${nombre}%0A` +
+            `*Teléfono:* ${telefonoCliente}%0A` +
+            `*Evento:* ${evento}%0A` +
+            `*Detalles:*%0A${mensaje.replace(/\n/g, '%0A')}%0A%0A` +
+            `*Enviado desde el sitio web de Sonido Star Miller*`;
+        
+        // Generar enlace de WhatsApp
+        window.open(`https://wa.me/${tuNumeroWhatsApp}?text=${textoWhatsApp}`, '_blank');
+        
+        // Opcional: Resetear formulario después de 2 segundos
+        setTimeout(() => this.reset(), 2000);
+    });
+</script>
+                            
                     </div>
                 </div>
             </div>
@@ -1119,14 +1004,14 @@
     <footer class="text-center">
         <div class="container">
             <p>© 2025 SONIDO STAR MILLER - Todos los derechos reservados | <a href="#">Políticas de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
-            <div class="sound-wave" style="height: 15px; opacity: 0.3;">
-                <div class="wave-bar" style="animation-delay: 0s; height: 4px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.1s; height: 8px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.2s; height: 12px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.3s; height: 15px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.4s; height: 12px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.5s; height: 8px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.6s; height: 4px;"></div>
+            <div class="sound-wave" style="height: 20px; opacity: 0.3;">
+                <div class="wave-bar" style="animation-delay: 0s; height: 5px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.1s; height: 10px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.2s; height: 15px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.3s; height: 20px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.4s; height: 15px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.5s; height: 10px;"></div>
+                <div class="wave-bar" style="animation-delay: 0.6s; height: 5px;"></div>
             </div>
         </div>
     </footer>
@@ -1199,13 +1084,13 @@
                         },${
                             Math.floor(Math.random() * 255)
                         },0.3) 0%, transparent 70%)`,
-                        'width': '150px',
-                        'height': '150px',
+                        'width': '200px',
+                        'height': '200px',
                         'position': 'absolute',
                         'border-radius': '50%',
                         'pointer-events': 'none',
                         'z-index': '-1',
-                        'filter': 'blur(15px)',
+                        'filter': 'blur(20px)',
                         'animation': 'fadeOut 2s ease-out'
                     });
                     
@@ -1218,10 +1103,10 @@
             // Efecto de botones de consola
             $('.console-button').hover(
                 function() {
-                    $(this).css('box-shadow', '0 0 8px rgba(255, 255, 255, 0.8)');
+                    $(this).css('box-shadow', '0 0 10px rgba(255, 255, 255, 0.8)');
                 },
                 function() {
-                    $(this).css('box-shadow', 'inset 0 0 4px rgba(0, 0, 0, 0.5)');
+                    $(this).css('box-shadow', 'inset 0 0 5px rgba(0, 0, 0, 0.5)');
                 }
             );
             
@@ -1232,35 +1117,6 @@
                     $(this).css('width', newWidth + '%');
                 });
             }, 2000);
-
-            // Manejo del formulario de WhatsApp
-            document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Datos del formulario
-                const nombre = document.getElementById('nombre').value;
-                const telefonoCliente = document.getElementById('telefono').value;
-                const evento = document.getElementById('evento').value;
-                const mensaje = document.getElementById('mensaje').value;
-                
-                // Número de WhatsApp en formato internacional
-                const tuNumeroWhatsApp = '522381973451';
-                
-                // Mensaje estructurado para WhatsApp
-                const textoWhatsApp = 
-                    `*NUEVA SOLICITUD DE COTIZACIÓN*%0A%0A` +
-                    `*Nombre:* ${nombre}%0A` +
-                    `*Teléfono:* ${telefonoCliente}%0A` +
-                    `*Evento:* ${evento}%0A` +
-                    `*Detalles:*%0A${mensaje.replace(/\n/g, '%0A')}%0A%0A` +
-                    `*Enviado desde el sitio web de Sonido Star Miller*`;
-                
-                // Generar enlace de WhatsApp
-                window.open(`https://wa.me/${tuNumeroWhatsApp}?text=${textoWhatsApp}`, '_blank');
-                
-                // Resetear formulario después de 2 segundos
-                setTimeout(() => this.reset(), 2000);
-            });
         });
     </script>
 </body>

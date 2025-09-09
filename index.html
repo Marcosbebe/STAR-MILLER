@@ -5,22 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Línea de Tiempo - Evolución de la Calidad</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    :root {
+      --primary-dark: #1a2a6c;
+      --primary-red: #b21f1f;
+      --primary-yellow: #fdbb2d;
+      --primary-blue: #00d2ff;
+      --primary-green: #3a7d44;
+      --text-dark: #2d3436;
+      --text-light: #f5f6fa;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glow-color: rgba(253, 187, 45, 0.6);
     }
 
     body {
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d, #00d2ff, #3a7d44);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-red), var(--primary-yellow), var(--primary-blue), var(--primary-green));
       background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: #333;
+      animation: gradientShift 20s ease infinite;
+      color: var(--text-dark);
       min-height: 100vh;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     @keyframes gradientShift {
@@ -30,46 +44,105 @@
     }
 
     .contenedor {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
+    /* Header mejorado */
     header {
       text-align: center;
-      margin-bottom: 40px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
+      margin-bottom: 60px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
     }
 
     h1 {
-      color: #1a2a6c;
-      margin-bottom: 10px;
-      font-size: 3rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-size: 3.5rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 10%;
+      width: 80%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--primary-yellow), transparent);
+      border-radius: 2px;
     }
 
     .subtitle {
-      color: #555;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      font-weight: 300;
     }
 
     .deadline {
-      background: linear-gradient(45deg, #ffeb3b, #ff9800);
+      background: linear-gradient(45deg, var(--primary-yellow), var(--primary-red));
       display: inline-block;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 12px 25px;
+      border-radius: 30px;
       font-weight: bold;
-      color: #333;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: var(--text-light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
 
+    .deadline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .deadline:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .deadline:hover::before {
+      left: 100%;
+    }
+
+    /* Timeline mejorada */
     .timeline {
       position: relative;
-      padding: 40px 0;
+      padding: 60px 0;
     }
 
     .timeline::before {
@@ -77,22 +150,22 @@
       position: absolute;
       left: 50%;
       top: 0;
-      width: 6px;
+      width: 8px;
       height: 100%;
-      background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d, #00d2ff);
+      background: linear-gradient(to bottom, var(--primary-dark), var(--primary-red), var(--primary-yellow), var(--primary-blue), var(--primary-green));
       transform: translateX(-50%);
-      border-radius: 3px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      border-radius: 5px;
+      box-shadow: 0 0 20px var(--glow-color);
     }
 
     .timeline-item {
       width: 50%;
-      padding: 20px 40px;
+      padding: 30px 50px;
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
       opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(80px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .timeline-item.visible {
@@ -110,140 +183,365 @@
     }
 
     .timeline-content {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-left: 5px solid #1a2a6c;
+      background: var(--card-bg);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-left: 6px solid var(--primary-dark);
       position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.01));
+      pointer-events: none;
     }
 
     .timeline-content:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
 
     .timeline-year {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: bold;
-      color: #1a2a6c;
-      margin-bottom: 15px;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      display: inline-block;
+    }
+
+    .timeline-year::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-dark), transparent);
+      border-radius: 2px;
     }
 
     .timeline-title {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-      color: #b21f1f;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      color: var(--primary-red);
       font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .timeline-desc {
-      line-height: 1.7;
-      margin-bottom: 20px;
-      color: #555;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      color: var(--text-dark);
+      font-size: 1.1rem;
     }
 
     .timeline-image {
       width: 100%;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: all 0.5s ease;
+      filter: grayscale(30%);
     }
 
     .timeline-image:hover {
       transform: scale(1.05);
+      filter: grayscale(0%);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     }
 
     .timeline-icon {
       position: absolute;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-red));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.3);
-      font-size: 28px;
+      box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.25), 0 5px 20px rgba(0,0,0,0.3);
+      font-size: 32px;
       color: white;
       top: 50%;
       transform: translateY(-50%);
       z-index: 2;
+      transition: all 0.4s ease;
+    }
+
+    .timeline-icon:hover {
+      transform: translateY(-50%) scale(1.1) rotate(10deg);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3), 0 8px 25px rgba(0,0,0,0.4);
     }
 
     .timeline-item:nth-child(odd) .timeline-icon {
-      right: -35px;
+      right: -40px;
     }
 
     .timeline-item:nth-child(even) .timeline-icon {
-      left: -35px;
+      left: -40px;
     }
 
     .timeline-contributions {
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      border-left: 3px solid #fdbb2d;
+      background: linear-gradient(to right, rgba(253, 187, 45, 0.1), rgba(253, 187, 45, 0.05));
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+      border-left: 4px solid var(--primary-yellow);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-contributions:hover {
+      transform: translateX(5px);
     }
 
     .timeline-contributions h3 {
-      color: #1a2a6c;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-contributions h3 i {
+      margin-right: 10px;
+      color: var(--primary-red);
     }
 
     .timeline-contributions ul {
-      padding-left: 20px;
+      padding-left: 25px;
     }
 
     .timeline-contributions li {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      position: relative;
+      transition: transform 0.3s ease;
     }
 
+    .timeline-contributions li:hover {
+      transform: translateX(5px);
+    }
+
+    .timeline-contributions li::before {
+      content: '►';
+      color: var(--primary-yellow);
+      font-size: 0.8rem;
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Efecto de partículas */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100vw) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Footer mejorado */
     footer {
       text-align: center;
-      margin-top: 60px;
-      padding: 25px;
-      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,42,108,0.8));
+      margin-top: 80px;
+      padding: 35px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,42,108,0.9));
       color: white;
-      border-radius: 15px;
-      box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+      border-radius: 20px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
     }
 
-    @media (max-width: 900px) {
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary-red), var(--primary-yellow), var(--primary-blue), var(--primary-green));
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+
+    /* Botón de scroll to top */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 1100px) {
       .timeline::before {
-        left: 30px;
+        left: 40px;
       }
 
       .timeline-item {
         width: 100%;
-        padding-left: 80px;
-        padding-right: 20px;
+        padding-left: 100px;
+        padding-right: 30px;
         left: 0 !important;
         text-align: left !important;
       }
 
       .timeline-item .timeline-icon {
-        left: 15px !important;
+        left: 30px !important;
         right: auto !important;
       }
 
+      h1 { font-size: 2.8rem; }
+      .subtitle { font-size: 1.3rem; }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+      }
+      
       h1 { font-size: 2.2rem; }
+      .subtitle { font-size: 1.1rem; }
+      .deadline { padding: 10px 20px; }
+      
+      .timeline-item {
+        padding-left: 70px;
+        padding-right: 15px;
+      }
+      
+      .timeline-content {
+        padding: 25px;
+      }
+      
+      .timeline-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+      
+      .timeline-item .timeline-icon {
+        left: 20px !important;
+      }
+      
+      .timeline-year {
+        font-size: 2rem;
+      }
+      
+      .timeline-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Efectos de animación adicionales */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    /* Mejora para modo oscuro opcional */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --card-bg: rgba(45, 52, 54, 0.95);
+        --text-dark: #f5f6fa;
+      }
+      
+      .timeline-content {
+        color: var(--text-light);
+      }
+      
+      .timeline-contributions {
+        background: linear-gradient(to right, rgba(253, 187, 45, 0.15), rgba(253, 187, 45, 0.1));
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Efecto de partículas de fondo -->
+  <div class="particles" id="particles"></div>
+
   <div class="contenedor">
     <header>
       <h1>Evolución de los Precursores y Filosofías de la Calidad</h1>
-      <p class="subtitle">Línea de tiempo desde los artesanos medievales hasta las metodologías modernas</p>
-      <p class="deadline"><i class="fas fa-clock"></i> Actualizado 2025</p>
+      <p class="subtitle">Un viaje a través del tiempo desde los artesanos medievales hasta las metodologías modernas</p>
+      <p class="deadline"><i class="fas fa-clock"></i> 08/09/2025</p>
+      <P> FATIMA MARTINEZ MARTINEZ</P>
+      <P>ADMINISTRACION DE LA CALIDAD</P>
     </header>
 
     <div class="timeline">
@@ -253,10 +551,10 @@
         <div class="timeline-content">
           <div class="timeline-year">~1450</div>
           <h2 class="timeline-title">Artesanos Medievales</h2>
-          <img src="https://images.unsplash.com/photo-1580598044901-cb846293c38c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Artesanos medievales">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.tPSl16F49qPAuYXTP5zBEQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="timeline-image" alt="Artesanos medievales">
           <p class="timeline-desc">Los gremios medievales controlaban rigurosamente la producción y garantizaban la calidad mediante reglas estrictas. Los aprendices eran supervisados por maestros artesanos durante años antes de poder establecerse por su cuenta, asegurando que se mantuvieran los estándares de excelencia. Cada artesano ponía su marca personal en los productos, estableciendo así un sistema de responsabilidad y trazabilidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Establecimiento de estándares de calidad por gremios</li>
               <li>Sistema de aprendizaje para transferir conocimiento</li>
@@ -274,10 +572,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1760 - 1840</div>
           <h2 class="timeline-title">Revolución Industrial</h2>
-          <img src="https://images.unsplash.com/photo-1507238691740-187c5b436213?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Revolución Industrial">
+          <img src="https://conceptoabc.com/wp-content/uploads/2021/08/Revolucion-industrial.jpg" class="timeline-image" alt="Revolución Industrial">
           <p class="timeline-desc">La producción en masa exigió la implementación de inspecciones básicas para asegurar uniformidad en los productos. Surge la figura del inspector de calidad en fábricas textiles y metalúrgicas, marcando el inicio del control de calidad formal en entornos industriales. La especialización del trabajo y la estandarización de componentes intercambiables fueron innovaciones cruciales que permitieron la producción a gran escala con calidad consistente.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Introducción de la especialización laboral</li>
               <li>Primeros sistemas de inspección formal</li>
@@ -295,10 +593,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1900</div>
           <h2 class="timeline-title">Frederick Taylor</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Frederick_Winslow_Taylor.jpg/800px-Frederick_Winslow_Taylor.jpg" class="timeline-image" alt="Frederick Taylor">
-          <p class="timeline-desc">Considerado el padre de la administración científica. Introdujo estudios de tiempos y movimientos, promoviendo la eficiencia y un enfoque sistemático en los procesos productivos. Su libro "The Principles of Scientific Management" (1911) sentó las bases para la gestión moderna de operaciones. Taylor propuso que la eficiencia organizacional podía mejorarse mediante la aplicación del método científico al análisis del trabajo.</p>
+          <img src="https://cdn.slidesharecdn.com/ss_thumbnails/fredericktaylor-141017022555-conversion-gate02-thumbnail.jpg?width=640&height=640&fit=bounds" class="timeline-image" alt="Frederick Taylor">
+          <p class="timeline-desc">Considerado el padre de la administración científica. Introdujo estudios de tiempos y movimientos, promoviendo la eficiencia y un enfoque sistemático en los procesos productivos. Su libro "The Principles of Scientific Management" (1911) sentó las bases para la gestión moderna de operaciones. Taylor propuso que la eficiencia organizacional podía mejorarse mediante la application del método científico al análisis del trabajo.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Administración científica</li>
               <li>Estudios de tiempos y movimientos</li>
@@ -316,10 +614,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1913</div>
           <h2 class="timeline-title">Henry Ford</h2>
-          <img src="https://images.unsplash.com/photo-1580273917196-fc0a6ab2c760?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Henry Ford">
-          <p class="timeline-desc">Revolucionó la producción industrial con la línea de ensamblaje móvil, implementando controles de calidad en cada etapa del proceso. Aunque no es conocido específicamente por teorías de calidad, su enfoque en la estandarización y eficiencia influyó enormemente en los sistemas de producción modernos. Ford redujo el tiempo de ensamblaje de un automóvil de 12 horas a solo 93 minutos, demostrando el poder de la estandarización y la especialización.</p>
+          <img src="https://1.bp.blogspot.com/-M391q9U9k-g/UfURHC8CVjI/AAAAAAAAG3Y/u3ObHaYZN1w/s1600/Henry+Ford,+1863-1947.JPG" class="timeline-image" alt="Henry Ford">
+          <p class="timeline-desc">Revolucionó la producción industrial con la línea de ensamblaje móvil, implementando controles de calidad en cada etapa del proceso. Aunque no es conocido específicamente por teorías de calidad, su enfoque en la estandarización y eficiencia influyó enormemente en los sistemas de production modernos. Ford redujo el tiempo de ensamblaje de un automóvil de 12 horas a solo 93 minutos, demostrando el poder de la estandarización y la especialización.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Línea de ensamblaje móvil</li>
               <li>Estandarización extrema de componentes</li>
@@ -337,13 +635,13 @@
         <div class="timeline-content">
           <div class="timeline-year">1924</div>
           <h2 class="timeline-title">Walter Shewhart</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Walter_A._Shewhart.jpg/800px-Walter_A._Shewhart.jpg" class="timeline-image" alt="Walter Shewhart">
+          <img src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/7357547/historia-mejora-20-728.jpg?1477931749" class="timeline-image" alt="Walter Shewhart">
           <p class="timeline-desc">Introdujo los gráficos de control y el control estadístico de procesos en Bell Telephone Laboratories, diferenciando entre variaciones comunes (propias del proceso) y especiales (causadas por factores externos). Sus trabajos sentaron las bases para el control estadístico de calidad moderno. Shewhart es considerado el padre del control estadístico de procesos (SPC) y su trabajo influyó directamente en Deming y otros gigantes de la calidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Gráficos de control estadístico</li>
-              <li>Concepto de variación común y especial</li>
+              <li>Concepto de variación común and especial</li>
               <li>Ciclo PDSA (Plan-Do-Study-Act)</li>
               <li>Control estadístico de procesos (SPC)</li>
               <li>Aplicación de métodos estadísticos a la industria</li>
@@ -358,10 +656,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1950</div>
           <h2 class="timeline-title">W. Edwards Deming</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/W._Edwards_Deming.jpg/800px-W._Edwards_Deming.jpg" class="timeline-image" alt="Deming">
+          <img src="https://images.pexels.com/photos/8296988/pexels-photo-8296988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="timeline-image" alt="Deming">
           <p class="timeline-desc">Llevó sus enseñanzas a Japón tras la Segunda Guerra Mundial, introduciendo los 14 puntos de la gestión de calidad y el ciclo PDCA (Plan-Do-Check-Act), base del Kaizen. Enfocó la calidad no como un resultado sino como un proceso de mejora continua que involucraba a toda la organización. Deming enseñó que el 94% de los problemas de calidad eran responsabilidad del sistema, no de los trabajadores, cambiando radicalmente la perspectiva sobre la gestión de calidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Los 14 puntos para la gestión de calidad</li>
               <li>Ciclo PDCA (Plan-Do-Check-Act)</li>
@@ -379,10 +677,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1954</div>
           <h2 class="timeline-title">Joseph Juran</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Joseph_M._Juran.jpg/800px-Joseph_M._Juran.jpg" class="timeline-image" alt="Juran">
+          <img src="https://images.pexels.com/photos/8296990/pexels-photo-8296990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="timeline-image" alt="Juran">
           <p class="timeline-desc">Formuló la Trilogía de Juran: planificación, control y mejora de la calidad, enfatizando el papel de la alta dirección. Introdujo el principio de Pareto a la gestión de calidad (80% de los problemas son causados por 20% de las causas). Destacó que la calidad debe estar alineada con los objetivos empresariales. Juran definió la calidad como "aptitud para el uso", enfocándose en las necesidades del cliente.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Trilogía de la calidad (planificación, control, mejora)</li>
               <li>Aplicación del principio de Pareto a la calidad</li>
@@ -400,10 +698,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1956</div>
           <h2 class="timeline-title">Armand V. Feigenbaum</h2>
-          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/armand-v-feigenbaum/_jcr_content/par/articlebody/image.img.jpg/1540927733552.jpg" class="timeline-image" alt="Armand Feigenbaum">
+          <img src="https://th.bing.com/th/id/R.20de9f851f1ba15f071acb56e3751ff0?rik=G8dTEpHUpqgN8Q&riu=http%3a%2f%2fimage.slideserve.com%2f196923%2farmand-v-feigenbaum-l.jpg&ehk=tkDa8oKWa33Ig4iAeaHl9vkO8LV4b6rVupZRt%2fv%2fGC8%3d&risl=&pid=ImgRaw&r=0" class="timeline-image" alt="Armand Feigenbaum">
           <p class="timeline-desc">Introdujo el concepto de Control Total de Calidad (TQC), proponiendo que la calidad es responsabilidad de todos los departamentos y de toda la gente de la empresa, no solo del departamento de calidad. Su libro "Total Quality Control" se convirtió en un texto fundamental. Feigenbaum enfatizó que la calidad debía comenzar con el diseño del producto y terminar solo cuando el producto estuviera en manos de un cliente satisfecho.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Concepto de Control Total de Calidad (TQC)</li>
               <li>Calidad como responsabilidad de toda la organización</li>
@@ -421,10 +719,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1960</div>
           <h2 class="timeline-title">Kaoru Ishikawa</h2>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Kaoru_Ishikawa.jpg/800px-Kaoru_Ishikawa.jpg" class="timeline-image" alt="Ishikawa">
+          <img src="https://images.pexels.com/photos/8296995/pexels-photo-8296995.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="timeline-image" alt="Ishikawa">
           <p class="timeline-desc">Creador del diagrama de causa-efecto (espina de pescado o diagrama de Ishikawa). Impulsó los círculos de calidad y la idea de que "el siguiente proceso es tu cliente". Promovió la participación de todos los empleados en el mejoramiento de la calidad y enfatizó que la calidad comienza con la educación. Ishikawa fue fundamental en el desarrollo del enfoque de calidad japonés y popularizó las 7 herramientas básicas de calidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Diagrama de causa-efecto (espina de pescado)</li>
               <li>Círculos de calidad</li>
@@ -442,10 +740,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1979</div>
           <h2 class="timeline-title">Philip B. Crosby</h2>
-          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/philip-b-crosby/_jcr_content/par/articlebody/image.img.jpg/1540927733718.jpg" class="timeline-image" alt="Philip Crosby">
+          <img src="https://1.bp.blogspot.com/-WWOX06q-nNU/XyO68Lnn_wI/AAAAAAAB0Ag/ObJlxaZPSuMWBhUFPAkoseexkAPmBLSHwCLcBGAsYHQ/w1200-h630-p-k-no-nu/4865.%2B%25282020-08-05%2529%2BInfograf%25C3%25ADa%2B8.%2BFil%25C3%25B3sofos%2Bde%2Bla%2BCalidad.%2BPhilip%2BBayard%2BCrosby.png" class="timeline-image" alt="Philip Crosby">
           <p class="timeline-desc">Popularizó conceptos como "Calidad es Cumplimiento de Requisitos", "Cero Defectos" y "La calidad es gratis". Su enfoque se centraba en la prevención más que en la detección, argumentando que los costos de prevención son menores que los costos de fallas. Su libro "Quality is Free" se convirtió en un best-seller. Crosby propuso que hacer las cosas bien desde el principio siempre es más económico que corregir errores después.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Concepto de "Cero Defectos"</li>
               <li>"La calidad es gratis" (Quality is Free)</li>
@@ -463,10 +761,10 @@
         <div class="timeline-content">
           <div class="timeline-year">1980</div>
           <h2 class="timeline-title">Genichi Taguchi</h2>
-          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/genichi-taguchi/_jcr_content/par/articlebody/image.img.jpg/1540927733661.jpg" class="timeline-image" alt="Genichi Taguchi">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5RTtwznJ5Wmu5AMGrpSkdwR77nRFTtAjkbqPIDoO_nkqZw63nn3D2cQixTGL6FVD1ncQeeh7_xas_xYjom3snMwO0MtnxsHIg_BaeI1KApzLtiA8V9_q_mxrEgy7zPxntJYLE5ZWpdYABIUc1h2NvIuyMUXLavtW9CRl1CERzre_JmruqGWGtlcGzUAE/s800/genichi-taguchi-toolshero%20(1).jpg" class="timeline-image" alt="Genichi Taguchi">
           <p class="timeline-desc">Desarrolló la función de pérdida de Taguchi, que cuantifica la pérdida financiera que sufre la sociedad cuando un producto se desvía de su objetivo de calidad. Promovió el diseño robusto de productos y procesos que sean insensibles a factores ambientales y de variación, reduciendo costos y mejorando calidad. Los métodos de Taguchi revolucionaron el diseño de experimentos en ingeniería de calidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Función de pérdida de calidad</li>
               <li>Diseño robusto de parámetros</li>
@@ -487,7 +785,7 @@
           <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Lean Six Sigma">
           <p class="timeline-desc">Se consolidan estándares como ISO 9001, Six Sigma, Lean Manufacturing, TQM y metodologías ágiles que priorizan mejora continua, reducción de desperdicios y satisfacción del cliente. La calidad evoluciona hacia enfoques integrales que consideran sostenibilidad, experiencia del cliente y adaptabilidad en entornos VUCA (Volátiles, Inciertos, Complejos y Ambiguos). La era digital incorpora analítica de datos, inteligencia artificial y automatización en los sistemas de gestión de calidad.</p>
           <div class="timeline-contributions">
-            <h3>Principales contribuciones:</h3>
+            <h3><i class="fas fa-trophy"></i> Principales contribuciones:</h3>
             <ul>
               <li>Six Sigma (reducción de variación)</li>
               <li>Lean Manufacturing (eliminación de desperdicios)</li>
@@ -508,10 +806,16 @@
     </footer>
   </div>
 
+  <!-- Botón para volver arriba -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
   <script>
     // Animación de aparición de elementos al hacer scroll
     document.addEventListener('DOMContentLoaded', function() {
       const timelineItems = document.querySelectorAll('.timeline-item');
+      const scrollTopBtn = document.getElementById('scrollTop');
       
       function checkVisibility() {
         timelineItems.forEach(item => {
@@ -522,11 +826,64 @@
             item.classList.add('visible');
           }
         });
+        
+        // Mostrar u ocultar botón de scroll to top
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add('active');
+        } else {
+          scrollTopBtn.classList.remove('active');
+        }
       }
+      
+      // Crear partículas de fondo
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Tamaño aleatorio
+          const size = Math.random() * 5 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          
+          // Posición inicial aleatoria
+          particle.style.left = `${Math.random() * 100}vw`;
+          particle.style.top = `${Math.random() * 100}vh`;
+          
+          // Retraso de animación aleatorio
+          particle.style.animationDelay = `${Math.random() * 15}s`;
+          
+          // Color aleatorio basado en colores primarios
+          const colors = [
+            'rgba(26, 42, 108, 0.6)', 
+            'rgba(178, 31, 31, 0.6)', 
+            'rgba(253, 187, 45, 0.6)', 
+            'rgba(0, 210, 255, 0.6)', 
+            'rgba(58, 125, 68, 0.6)'
+          ];
+          particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+          
+          particlesContainer.appendChild(particle);
+        }
+      }
+      
+      // Scroll to top
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
       
       // Verificar visibilidad al cargar y al hacer scroll
       checkVisibility();
       window.addEventListener('scroll', checkVisibility);
+      
+      // Crear partículas
+      createParticles();
     });
   </script>
 </body>

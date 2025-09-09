@@ -1,1123 +1,533 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonido Star Miller - Experiencias Sonideras Inolvidables</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --color-primario: #111;
-            --color-secundario: #ff0;
-            --color-terciario: #f00;
-            --color-texto: #eee;
-            --color-fondo: #222;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
-            margin-bottom: 100px;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 0, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 20%);
-        }
-        
-        /* Efecto de luces de escenario */
-        .stage-lights {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .light-beam {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,0,0.2) 0%, rgba(255,255,0,0) 70%);
-            animation: lightMovement 15s infinite alternate;
-            filter: blur(30px);
-        }
-        
-        .light-beam:nth-child(1) {
-            top: 10%;
-            left: 20%;
-            background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, rgba(255,0,0,0) 70%);
-            animation-delay: 0s;
-        }
-        
-        .light-beam:nth-child(2) {
-            top: 60%;
-            left: 70%;
-            animation-delay: 3s;
-            animation-duration: 12s;
-        }
-        
-        .light-beam:nth-child(3) {
-            top: 30%;
-            left: 50%;
-            background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, rgba(0,255,255,0) 70%);
-            animation-delay: 6s;
-            animation-duration: 18s;
-        }
-        
-        @keyframes lightMovement {
-            0% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, 30px) scale(1.2); }
-            50% { transform: translate(-30px, 60px) scale(0.8); }
-            75% { transform: translate(70px, -20px) scale(1.1); }
-            100% { transform: translate(-50px, 30px) scale(0.9); }
-        }
-        
-        /* Estructura de sonido */
-        .speaker-decoration {
-            position: absolute;
-            width: 100px;
-            height: 200px;
-            background: linear-gradient(to bottom, #333, #000);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
-            z-index: -1;
-        }
-        
-        .speaker-decoration.left {
-            left: -50px;
-            top: 30%;
-            transform: perspective(500px) rotateY(20deg);
-        }
-        
-        .speaker-decoration.right {
-            right: -50px;
-            top: 30%;
-            transform: perspective(500px) rotateY(-20deg);
-        }
-        
-        .speaker-decoration::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background: radial-gradient(circle, #444, #222);
-            border-radius: 5px;
-        }
-        
-        .speaker-decoration::after {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            right: 30px;
-            bottom: 30px;
-            background: radial-gradient(circle, #555, #333);
-            border-radius: 50%;
-        }
-        
-        /* Header con efecto de sonido */
-        header {
-            background: linear-gradient(135deg, #000, #222);
-            color: var(--color-texto);
-            padding: 20px 0;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 3px solid var(--color-secundario);
-            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--color-terciario), 
-                var(--color-secundario), 
-                var(--color-terciario), 
-                transparent);
-            animation: headerGlow 3s linear infinite;
-        }
-        
-        @keyframes headerGlow {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px var(--color-secundario),
-                0 0 20px var(--color-terciario),
-                0 0 30px rgba(255, 255, 255, 0.5);
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        header h1::after {
-            content: '★';
-            position: absolute;
-            right: -25px;
-            top: -15px;
-            font-size: 1.5rem;
-            color: var(--color-secundario);
-            animation: starPulse 2s infinite;
-        }
-        
-        /* Navegación estilo consola de sonido */
-        .nav-link {
-            color: var(--color-texto) !important;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-            margin: 0 5px;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--color-secundario);
-            padding: 8px 15px !important;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--color-secundario) !important;
-            background: rgba(255, 255, 0, 0.3) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.3);
-        }
-        
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 2px solid var(--color-secundario);
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .nav-link:hover::before {
-            opacity: 0.5;
-        }
-        
-        /* Secciones estilo escenario */
-        section {
-            display: none;
-            padding: 60px 0;
-            background: rgba(0, 0, 0, 0.7);
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 
-                0 0 20px rgba(0, 0, 0, 0.8),
-                0 0 40px rgba(255, 255, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 0, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--color-secundario), 
-                var(--color-terciario), 
-                var(--color-secundario), 
-                transparent);
-            opacity: 0.5;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: var(--color-secundario);
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--color-secundario), 
-                var(--color-terciario), 
-                transparent);
-        }
-        
-        /* Efecto de ecualizador */
-        .equalizer-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            padding: 0 20px;
-            opacity: 0.3;
-        }
-        
-        .equalizer-bar {
-            width: 6px;
-            background: linear-gradient(to top, var(--color-secundario), var(--color-terciario));
-            border-radius: 3px 3px 0 0;
-            animation: equalize 1.5s infinite ease-in-out;
-        }
-        
-        @keyframes equalize {
-            0%, 100% { height: 10%; }
-            50% { height: 100%; }
-        }
-        
-        /* Botón de WhatsApp mejorado */
-        .btn-whatsapp {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: white;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            text-align: center;
-            font-size: 36px;
-            box-shadow: 
-                0 5px 15px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(37, 211, 102, 0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-whatsapp:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 
-                0 8px 20px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(37, 211, 102, 0.7);
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Carrusel mejorado */
-        .carousel {
-            border: 3px solid var(--color-secundario);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
-            position: relative;
-        }
-        
-        .carousel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                45deg,
-                rgba(255, 255, 0, 0.1) 0%,
-                rgba(255, 0, 0, 0.1) 50%,
-                rgba(255, 255, 0, 0.1) 100%
-            );
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 2px solid var(--color-secundario);
-        }
-        
-        /* Tarjetas de testimonios mejoradas */
-        .testimonial-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--color-secundario);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 255, 0, 0.3);
-            border-color: var(--color-terciario);
-        }
-        
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 60px;
-            color: rgba(255, 255, 0, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        
-        .testimonial-card::after {
-            content: '"';
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 60px;
-            color: rgba(255, 255, 0, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        
-        .testimonial-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            border: 3px solid var(--color-secundario);
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
-        }
-        
-        /* Formulario estilo consola */
-        .form-control {
-            background-color: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--color-secundario);
-            color: var(--color-texto);
-            border-radius: 5px;
-        }
-        
-        .form-control:focus {
-            background-color: rgba(0, 0, 0, 0.7);
-            border-color: var(--color-terciario);
-            color: var(--color-texto);
-            box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-secundario), var(--color-terciario));
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 25px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 255, 0, 0.5);
-        }
-        
-        /* Footer mejorado */
-        footer {
-            background: linear-gradient(135deg, #000, #222);
-            color: var(--color-texto);
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 1000;
-            border-top: 3px solid var(--color-secundario);
-            box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
-        }
-        
-        footer p {
-            margin: 0;
-            font-size: 1rem;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
-        }
-        
-        footer a {
-            color: var(--color-secundario);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        footer a:hover {
-            color: var(--color-terciario);
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-        }
-        
-        /* Efecto de sonido visual */
-        .sound-wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.5;
-        }
-        
-        .wave-bar {
-            width: 4px;
-            height: 10px;
-            background: var(--color-secundario);
-            margin: 0 2px;
-            border-radius: 2px;
-            animation: wave 1.5s infinite ease-in-out;
-        }
-        
-        @keyframes wave {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(3); }
-        }
-        
-        /* Efecto de disco giratorio */
-        .vinyl-record {
-            position: absolute;
-            right: -50px;
-            bottom: -50px;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #111, #000);
-            border-radius: 50%;
-            border: 5px solid #333;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            z-index: -1;
-            animation: spin 20s linear infinite;
-            opacity: 0.3;
-        }
-        
-        .vinyl-record::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, var(--color-secundario), var(--color-terciario));
-            border-radius: 50%;
-            border: 2px solid #000;
-        }
-        
-        .vinyl-record::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: #000;
-            border-radius: 50%;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Efecto de botones de consola */
-        .console-button {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            margin: 0 5px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .console-button.red {
-            background: radial-gradient(circle at 30% 30%, #f00, #800);
-        }
-        
-        .console-button.yellow {
-            background: radial-gradient(circle at 30% 30%, var(--color-secundario), #880);
-        }
-        
-        .console-button.green {
-            background: radial-gradient(circle at 30% 30%, #0f0, #080);
-        }
-        
-        /* Efecto de nivel de sonido */
-        .sound-level {
-            height: 10px;
-            background: linear-gradient(90deg, #080, #0f0, var(--color-secundario), #f00);
-            border-radius: 5px;
-            margin: 10px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sound-level::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0.3) 0%, 
-                rgba(255, 255, 255, 0) 50%, 
-                rgba(255, 255, 255, 0.3) 100%);
-            animation: levelShine 2s infinite linear;
-        }
-        
-        @keyframes levelShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        /* Efecto de cableado */
-        .cable-decoration {
-            position: absolute;
-            width: 100px;
-            height: 300px;
-            border-left: 3px dashed rgba(255, 255, 0, 0.3);
-            border-right: 3px dashed rgba(255, 255, 0, 0.3);
-            left: 50%;
-            top: -100px;
-            z-index: -1;
-        }
-        
-        /* Efecto ripple para navegación */
-        @keyframes ripple {
-            to {
-                transform: scale(2);
-                opacity: 0;
-            }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            .speaker-decoration {
-                display: none;
-            }
-            
-            .vinyl-record {
-                width: 100px;
-                height: 100px;
-                right: -30px;
-                bottom: -30px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Línea de Tiempo - Evolución de la Calidad</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d, #00d2ff, #3a7d44);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contenedor {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      color: #1a2a6c;
+      margin-bottom: 10px;
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .deadline {
+      background: linear-gradient(45deg, #ffeb3b, #ff9800);
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      color: #333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d, #00d2ff);
+      transform: translateX(-50%);
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 20px 40px;
+      position: relative;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 5px solid #1a2a6c;
+      position: relative;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .timeline-year {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+    }
+
+    .timeline-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #b21f1f;
+      font-weight: bold;
+    }
+
+    .timeline-desc {
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .timeline-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-image:hover {
+      transform: scale(1.05);
+    }
+
+    .timeline-icon {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.3);
+      font-size: 28px;
+      color: white;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-icon {
+      right: -35px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-icon {
+      left: -35px;
+    }
+
+    .timeline-contributions {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      border-left: 3px solid #fdbb2d;
+    }
+
+    .timeline-contributions h3 {
+      color: #1a2a6c;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .timeline-contributions ul {
+      padding-left: 20px;
+    }
+
+    .timeline-contributions li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,42,108,0.8));
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 900px) {
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 20px;
+        left: 0 !important;
+        text-align: left !important;
+      }
+
+      .timeline-item .timeline-icon {
+        left: 15px !important;
+        right: auto !important;
+      }
+
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Efecto de luces de escenario -->
-    <div class="stage-lights">
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-    </div>
-    
-    <!-- Bocinas decorativas -->
-    <div class="speaker-decoration left"></div>
-    <div class="speaker-decoration right"></div>
-    
-    <!-- Botón de WhatsApp -->
-    <a href="https://wa.me/522381973451" class="btn-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
-    <header class="text-center">
-        <div class="container">
-            <h1 class="animate__animated animate__fadeInDown">SONIDO STAR MILLER</h1>
-            <div class="sound-wave">
-                <div class="wave-bar" style="animation-delay: 0s"></div>
-                <div class="wave-bar" style="animation-delay: 0.1s"></div>
-                <div class="wave-bar" style="animation-delay: 0.2s"></div>
-                <div class="wave-bar" style="animation-delay: 0.3s"></div>
-                <div class="wave-bar" style="animation-delay: 0.4s"></div>
-                <div class="wave-bar" style="animation-delay: 0.5s"></div>
-                <div class="wave-bar" style="animation-delay: 0.6s"></div>
-                <div class="wave-bar" style="animation-delay: 0.7s"></div>
-            </div>
-            <nav>
-                <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link interactive active" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link interactive" href="#sobre">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link interactive" href="#equipo">Equipo</a></li>
-                    <li class="nav-item"><a class="nav-link interactive" href="#galeria">Galería</a></li>
-                    <li class="nav-item"><a class="nav-link interactive" href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
+  <div class="contenedor">
+    <header>
+      <h1>Evolución de los Precursores y Filosofías de la Calidad</h1>
+      <p class="subtitle">Línea de tiempo desde los artesanos medievales hasta las metodologías modernas</p>
+      <p class="deadline"><i class="fas fa-clock"></i> Actualizado 2025</p>
     </header>
-    
-    <main class="container mt-4">
-        <!-- Inicio -->
-        <section id="inicio" class="active">
-            <div class="vinyl-record"></div>
-            <div class="equalizer-container">
-                <div class="equalizer-bar" style="animation-delay: 0s; height: 30%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.2s; height: 70%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.4s; height: 40%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.6s; height: 90%"></div>
-                <div class="equalizer-bar" style="animation-delay: 0.8s; height: 20%"></div>
-                <div class="equalizer-bar" style="animation-delay: 1s; height: 60%"></div>
-                <div class="equalizer-bar" style="animation-delay: 1.2s; height: 30%"></div>
-            </div>
-            <div class="container">
-                <h2>BIENVENIDOS A SONIDO STAR MILLER</h2>
-                <div class="sound-level" style="width: 80%; margin: 20px auto;"></div>
-                <p class="lead">Transformamos tus eventos en experiencias sonideras inolvidables con la mejor tecnología y profesionalismo.</p>
-                <p>En <strong>Sonido Star Miller</strong>, ubicados en Santiago Nopala, Puebla, nos especializamos en brindar servicios de audio profesional, iluminación robótica y video de alta calidad para todo tipo de eventos. Desde bodas y XV años hasta eventos corporativos, nuestro equipo profesional y tecnología de vanguardia garantizan un espectáculo único.</p>
-                <div class="text-center mt-4">
-                    <span class="console-button red"></span>
-                    <span class="console-button yellow"></span>
-                    <span class="console-button green"></span>
-                </div>
-            </div>
-        </section>
 
-        <!-- Sobre Nosotros -->
-        <section id="sobre">
-            <div class="cable-decoration"></div>
-            <div class="container">
-                <h2>SOBRE NOSOTROS</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Somos <strong>Sonido Star Miller</strong>, una empresa con más de 15 años de experiencia en el mundo del entretenimiento audiovisual. Nos enorgullece ofrecer servicios de calidad en Santiago Nopala, Puebla, y sus alrededores.</p>
-                        <p>Nuestro equipo está formado por profesionales apasionados por la música y la tecnología, comprometidos a hacer de cada evento una experiencia única.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="sound-level"></div>
-                        <h3>NUESTRA FILOSOFÍA</h3>
-                        <p>Creemos que cada evento merece un sonido impecable, una iluminación espectacular y una atención personalizada que haga la diferencia.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="timeline">
 
-        <!-- Equipo -->
-        <section id="equipo">
-            <div class="container">
-                <h2>NUESTRO EQUIPO TECNOLÓGICO</h2>
-                <div class="sound-level" style="width: 60%; margin: 0 auto 30px;"></div>
-                
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="testimonial-card text-center">
-                            <i class="fas fa-volume-up fa-3x mb-3" style="color: var(--color-secundario);"></i>
-                            <h3>SISTEMA DE AUDIO</h3>
-                            <p>Bocinas profesionales de alta potencia, mezcladoras digitales, micrófonos inalámbricos y procesadores de sonido para una calidad auditiva excepcional.</p>
-                            <div class="sound-level"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="testimonial-card text-center">
-                            <i class="fas fa-lightbulb fa-3x mb-3" style="color: var(--color-secundario);"></i>
-                            <h3>ILUMINACIÓN ROBÓTICA</h3>
-                            <p>Luces inteligentes, láseres, máquinas de humo y efectos especiales que sincronizan con la música para crear ambientes espectaculares.</p>
-                            <div class="sound-level"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="testimonial-card text-center">
-                            <i class="fas fa-video fa-3x mb-3" style="color: var(--color-secundario);"></i>
-                            <h3>VIDEO Y PROYECCIÓN</h3>
-                            <p>Pantallas LED, proyectores de alta definición y sistemas de visualización para mostrar tus videos, fotos o transmisiones en vivo.</p>
-                            <div class="sound-level"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Galería -->
-        <section id="galeria">
-            <div class="container">
-                <h2>GALERÍA DE EVENTOS</h2>
-                <p class="text-center">Algunos momentos capturados de nuestros eventos más recientes</p>
-                
-                <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="ST.jpg" class="d-block w-100" alt="Evento 1">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>XV Años de María</h5>
-                                <p>Iluminación robótica y sonido profesional</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="SM.jpg" class="d-block w-100" alt="Evento 2">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Boda de Ana y Luis</h5>
-                                <p>Sistema de audio para ceremonia y recepción</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="MS.jpg" class="d-block w-100" alt="Evento 3">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Fiesta Corporativa</h5>
-                                <p>Sonido, iluminación y pantallas LED</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
-                </div>
-                
-                <div class="row mt-4">
-                    <div class="col-md-4 mb-4">
-                        <div class="card bg-dark border border-warning">
-                            <img src="MS.jpg" class="card-img-top" alt="Evento 4">
-                            <div class="card-body">
-                                <h5 class="card-title text-warning">Graduación 2023</h5>
-                                <p class="card-text">Sistema completo de audio e iluminación</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card bg-dark border border-warning">
-                            <img src="ST.jpg" class="card-img-top" alt="Evento 5">
-                            <div class="card-body">
-                                <h5 class="card-title text-warning">Fiesta Infantil</h5>
-                                <p class="card-text">Música y efectos especiales para niños</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card bg-dark border border-warning">
-                            <img src="SM.jpg" class="card-img-top" alt="Evento 6">
-                            <div class="card-body">
-                                <h5 class="card-title text-warning">Evento Deportivo</h5>
-                                <p class="card-text">Sonido para estadio y pantallas gigantes</p>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-            <!-- Galería de videos -->
-            <h3 class="mt-5 mb-3 text-center">Videos</h3>
-            <div class="container">
-                <div class="d-flex flex-wrap justify-content-around align-items-stretch">
-                    <div class="p-2" style="flex: 1 1 320px; max-width: 400px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="0.0.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                    <div class="p-2" style="flex: 1 1 220px; max-width: 300px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="0.1.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                    <div class="p-2" style="flex: 1 1 280px; max-width: 350px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="1.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                    <div class="p-2" style="flex: 1 1 180px; max-width: 250px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="2.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                    <div class="p-2" style="flex: 1 1 320px; max-width: 400px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="3.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                    <div class="p-2" style="flex: 1 1 220px; max-width: 300px;">
-                        <div class="embed-responsive embed-responsive-16by9 mb-4">
-                            <video class="gallery-video embed-responsive-item" src="4.mp4" controls preload="none"></video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-                // Permite que solo un video se reproduzca a la vez
-                document.querySelectorAll('.gallery-video').forEach(function(video) {
-                    video.addEventListener('play', function() {
-                        document.querySelectorAll('.gallery-video').forEach(function(other) {
-                            if (other !== video) {
-                                other.pause();
-                            }
-                        });
-                    });
-                });
-            </script>
-        </section>
-
-        <!-- Contacto -->
-        <section id="contacto">
-            <div class="container">
-                <h2>CONTÁCTANOS</h2>
-                <div class="sound-level" style="width: 50%; margin: 0 auto 30px;"></div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3><i class="fas fa-map-marker-alt text-warning"></i> UBICACIÓN</h3>
-                        <p>Calle Libertad #60, Santiago Nopala, Puebla</p>
-                        
-                        <h3 class="mt-4"><i class="fas fa-phone text-warning"></i> TELÉFONOS</h3>
-                        <p>
-                            <a href="tel:2381973451" class="text-warning">238 197 3451</a><br>
-                            <a href="tel:2382202136" class="text-warning">238 220 2136</a><br>
-                            <a href="tel:2382519320" class="text-warning">238 251 9320</a>
-                        </p>
-                        
-                        <h3 class="mt-4"><i class="fas fa-envelope text-warning"></i> CORREO</h3>
-                        <p><a href="mailto:marcosgarcia2del2004g@gmail.com" class="text-warning">marcosgarcia2del2004g@gmail.com</a></p>
-                        
-                        <h3 class="mt-4"><i class="fas fa-share-alt text-warning"></i> REDES SOCIALES</h3>
-                        <a href="https://www.facebook.com/share/18nAW63qB9/" target="_blank" class="btn btn-dark mr-2 mb-2">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="https://instagram.com/sonidostarmiller" target="_blank" class="btn btn-dark mr-2 mb-2">
-                            <i class="fab fa-instagram"></i> Instagram
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Reemplaza la sección del formulario actual con este código -->
-<div class="card bg-dark border border-warning">
-    <div class="card-body">
-        <h3 class="card-title text-warning">SOLICITA TU COTIZACIÓN</h3>
-        <form id="whatsappForm">
-            <div class="form-group">
-                <label for="nombre">Nombre completo *</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono *</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" required>
-            </div>
-            <div class="form-group">
-                <label for="evento">Tipo de evento *</label>
-                <select class="form-control" id="evento" name="evento" required>
-                    <option value="">Selecciona...</option>
-                    <option value="Boda">Boda</option>
-                    <option value="XV Años">XV Años</option>
-                    <option value="Evento Corporativo">Evento Corporativo</option>
-                    <option value="Fiesta Privada">Fiesta Privada</option>
-                    <option value="Otro">Otro</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="mensaje">Detalles del evento *</label>
-                <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required placeholder="Fecha, lugar, número de invitados, etc."></textarea>
-            </div>
-            <button type="submit" class="btn btn-warning btn-block">
-                <i class="fab fa-whatsapp mr-2"></i> ENVIAR POR WHATSAPP
-            </button>
-        </form>
-    </div>
-</div>
-
-
-<script>
-    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Datos del formulario
-        const nombre = document.getElementById('nombre').value;
-        const telefonoCliente = document.getElementById('telefono').value;
-        const evento = document.getElementById('evento').value;
-        const mensaje = document.getElementById('mensaje').value;
-        
-        // Tu número en formato internacional (sin +, guiones o espacios)
-        const tuNumeroWhatsApp = '522381973451'; // Código de país +52 y tu número 2382105647
-        
-        // Mensaje estructurado para WhatsApp
-        const textoWhatsApp = 
-            `*NUEVA SOLICITUD DE COTIZACIÓN*%0A%0A` +
-            `*Nombre:* ${nombre}%0A` +
-            `*Teléfono:* ${telefonoCliente}%0A` +
-            `*Evento:* ${evento}%0A` +
-            `*Detalles:*%0A${mensaje.replace(/\n/g, '%0A')}%0A%0A` +
-            `*Enviado desde el sitio web de Sonido Star Miller*`;
-        
-        // Generar enlace de WhatsApp
-        window.open(`https://wa.me/${tuNumeroWhatsApp}?text=${textoWhatsApp}`, '_blank');
-        
-        // Opcional: Resetear formulario después de 2 segundos
-        setTimeout(() => this.reset(), 2000);
-    });
-</script>
-                            
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <p>© 2025 SONIDO STAR MILLER - Todos los derechos reservados | <a href="#">Políticas de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
-            <div class="sound-wave" style="height: 20px; opacity: 0.3;">
-                <div class="wave-bar" style="animation-delay: 0s; height: 5px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.1s; height: 10px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.2s; height: 15px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.3s; height: 20px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.4s; height: 15px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.5s; height: 10px;"></div>
-                <div class="wave-bar" style="animation-delay: 0.6s; height: 5px;"></div>
-            </div>
+      <!-- Artesanos Medievales -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">~1450</div>
+          <h2 class="timeline-title">Artesanos Medievales</h2>
+          <img src="https://images.unsplash.com/photo-1580598044901-cb846293c38c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Artesanos medievales">
+          <p class="timeline-desc">Los gremios medievales controlaban rigurosamente la producción y garantizaban la calidad mediante reglas estrictas. Los aprendices eran supervisados por maestros artesanos durante años antes de poder establecerse por su cuenta, asegurando que se mantuvieran los estándares de excelencia. Cada artesano ponía su marca personal en los productos, estableciendo así un sistema de responsabilidad y trazabilidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Establecimiento de estándares de calidad por gremios</li>
+              <li>Sistema de aprendizaje para transferir conocimiento</li>
+              <li>Marcas de artesano para identificar el origen y responsabilidad</li>
+              <li>Control de calidad mediante inspección visual y pruebas funcionales</li>
+              <li>Especialización por oficios y desarrollo de expertise</li>
+            </ul>
+          </div>
         </div>
-    </footer>
+        <div class="timeline-icon"><i class="fas fa-hammer"></i></div>
+      </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Mostrar solo la sección de inicio al cargar
-            $('#inicio').addClass('active');
-            
-            // Efecto de navegación entre secciones
-            $('a.interactive').on('click', function(e) {
-                e.preventDefault();
-                const target = $(this).attr('href');
-                
-                // Remover clase active de todos los enlaces
-                $('a.interactive').removeClass('active');
-                // Agregar clase active al enlace clickeado
-                $(this).addClass('active');
-                
-                // Ocultar todas las secciones
-                $('section').removeClass('active');
-                
-                // Mostrar solo la sección objetivo
-                $(target).addClass('active');
-                
-                // Scroll suave al inicio de la sección
-                $('html, body').animate({
-                    scrollTop: $(target).offset().top - 20
-                }, 800);
-                
-                // Efecto de onda de sonido
-                const ripple = $('<div class="sound-ripple"></div>');
-                $('body').append(ripple);
-                ripple.css({
-                    'left': e.pageX - 50,
-                    'top': e.pageY - 50,
-                    'background': 'radial-gradient(circle, rgba(255,255,0,0.3) 0%, transparent 70%)',
-                    'width': '100px',
-                    'height': '100px',
-                    'position': 'absolute',
-                    'border-radius': '50%',
-                    'pointer-events': 'none',
-                    'z-index': '9999',
-                    'transform': 'scale(0)',
-                    'animation': 'ripple 1s ease-out'
-                });
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 1000);
-            });
-            
-            // Efecto aleatorio de luces
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const light = $('<div class="random-light"></div>');
-                    $('body').append(light);
-                    light.css({
-                        'left': Math.random() * 100 + '%',
-                        'top': Math.random() * 100 + '%',
-                        'background': `radial-gradient(circle, rgba(${
-                            Math.floor(Math.random() * 255)
-                        },${
-                            Math.floor(Math.random() * 255)
-                        },${
-                            Math.floor(Math.random() * 255)
-                        },0.3) 0%, transparent 70%)`,
-                        'width': '200px',
-                        'height': '200px',
-                        'position': 'absolute',
-                        'border-radius': '50%',
-                        'pointer-events': 'none',
-                        'z-index': '-1',
-                        'filter': 'blur(20px)',
-                        'animation': 'fadeOut 2s ease-out'
-                    });
-                    
-                    setTimeout(() => {
-                        light.remove();
-                    }, 2000);
-                }
-            }, 1000);
-            
-            // Efecto de botones de consola
-            $('.console-button').hover(
-                function() {
-                    $(this).css('box-shadow', '0 0 10px rgba(255, 255, 255, 0.8)');
-                },
-                function() {
-                    $(this).css('box-shadow', 'inset 0 0 5px rgba(0, 0, 0, 0.5)');
-                }
-            );
-            
-            // Animación de niveles de sonido aleatorios
-            setInterval(() => {
-                $('.sound-level').each(function() {
-                    const newWidth = Math.floor(Math.random() * 30) + 70;
-                    $(this).css('width', newWidth + '%');
-                });
-            }, 2000);
+      <!-- Revolución Industrial -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1760 - 1840</div>
+          <h2 class="timeline-title">Revolución Industrial</h2>
+          <img src="https://images.unsplash.com/photo-1507238691740-187c5b436213?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Revolución Industrial">
+          <p class="timeline-desc">La producción en masa exigió la implementación de inspecciones básicas para asegurar uniformidad en los productos. Surge la figura del inspector de calidad en fábricas textiles y metalúrgicas, marcando el inicio del control de calidad formal en entornos industriales. La especialización del trabajo y la estandarización de componentes intercambiables fueron innovaciones cruciales que permitieron la producción a gran escala con calidad consistente.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Introducción de la especialización laboral</li>
+              <li>Primeros sistemas de inspección formal</li>
+              <li>Estandarización de componentes intercambiables</li>
+              <li>Primeros intentos de medición y tolerancias</li>
+              <li>División del trabajo en tareas específicas</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-industry"></i></div>
+      </div>
+
+      <!-- Frederick Taylor -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1900</div>
+          <h2 class="timeline-title">Frederick Taylor</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Frederick_Winslow_Taylor.jpg/800px-Frederick_Winslow_Taylor.jpg" class="timeline-image" alt="Frederick Taylor">
+          <p class="timeline-desc">Considerado el padre de la administración científica. Introdujo estudios de tiempos y movimientos, promoviendo la eficiencia y un enfoque sistemático en los procesos productivos. Su libro "The Principles of Scientific Management" (1911) sentó las bases para la gestión moderna de operaciones. Taylor propuso que la eficiencia organizacional podía mejorarse mediante la aplicación del método científico al análisis del trabajo.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Administración científica</li>
+              <li>Estudios de tiempos y movimientos</li>
+              <li>División sistemática del trabajo</li>
+              <li>Estandarización de herramientas y procedimientos</li>
+              <li>Selección científica y entrenamiento de trabajadores</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-cogs"></i></div>
+      </div>
+
+      <!-- Henry Ford -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1913</div>
+          <h2 class="timeline-title">Henry Ford</h2>
+          <img src="https://images.unsplash.com/photo-1580273917196-fc0a6ab2c760?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Henry Ford">
+          <p class="timeline-desc">Revolucionó la producción industrial con la línea de ensamblaje móvil, implementando controles de calidad en cada etapa del proceso. Aunque no es conocido específicamente por teorías de calidad, su enfoque en la estandarización y eficiencia influyó enormemente en los sistemas de producción modernos. Ford redujo el tiempo de ensamblaje de un automóvil de 12 horas a solo 93 minutos, demostrando el poder de la estandarización y la especialización.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Línea de ensamblaje móvil</li>
+              <li>Estandarización extrema de componentes</li>
+              <li>Control de calidad en proceso</li>
+              <li>Reducción de costos mediante eficiencia</li>
+              <li>Producción en masa accesible</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-car"></i></div>
+      </div>
+
+      <!-- Walter Shewhart -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1924</div>
+          <h2 class="timeline-title">Walter Shewhart</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Walter_A._Shewhart.jpg/800px-Walter_A._Shewhart.jpg" class="timeline-image" alt="Walter Shewhart">
+          <p class="timeline-desc">Introdujo los gráficos de control y el control estadístico de procesos en Bell Telephone Laboratories, diferenciando entre variaciones comunes (propias del proceso) y especiales (causadas por factores externos). Sus trabajos sentaron las bases para el control estadístico de calidad moderno. Shewhart es considerado el padre del control estadístico de procesos (SPC) y su trabajo influyó directamente en Deming y otros gigantes de la calidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Gráficos de control estadístico</li>
+              <li>Concepto de variación común y especial</li>
+              <li>Ciclo PDSA (Plan-Do-Study-Act)</li>
+              <li>Control estadístico de procesos (SPC)</li>
+              <li>Aplicación de métodos estadísticos a la industria</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
+      </div>
+
+      <!-- Deming -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1950</div>
+          <h2 class="timeline-title">W. Edwards Deming</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/W._Edwards_Deming.jpg/800px-W._Edwards_Deming.jpg" class="timeline-image" alt="Deming">
+          <p class="timeline-desc">Llevó sus enseñanzas a Japón tras la Segunda Guerra Mundial, introduciendo los 14 puntos de la gestión de calidad y el ciclo PDCA (Plan-Do-Check-Act), base del Kaizen. Enfocó la calidad no como un resultado sino como un proceso de mejora continua que involucraba a toda la organización. Deming enseñó que el 94% de los problemas de calidad eran responsabilidad del sistema, no de los trabajadores, cambiando radicalmente la perspectiva sobre la gestión de calidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Los 14 puntos para la gestión de calidad</li>
+              <li>Ciclo PDCA (Plan-Do-Check-Act)</li>
+              <li>Sistema de conocimiento profundo</li>
+              <li>Énfasis en el liderazgo y reducción del miedo</li>
+              <li>Revolución de la calidad en Japón</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-check-circle"></i></div>
+      </div>
+
+      <!-- Juran -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1954</div>
+          <h2 class="timeline-title">Joseph Juran</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Joseph_M._Juran.jpg/800px-Joseph_M._Juran.jpg" class="timeline-image" alt="Juran">
+          <p class="timeline-desc">Formuló la Trilogía de Juran: planificación, control y mejora de la calidad, enfatizando el papel de la alta dirección. Introdujo el principio de Pareto a la gestión de calidad (80% de los problemas son causados por 20% de las causas). Destacó que la calidad debe estar alineada con los objetivos empresariales. Juran definió la calidad como "aptitud para el uso", enfocándose en las necesidades del cliente.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Trilogía de la calidad (planificación, control, mejora)</li>
+              <li>Aplicación del principio de Pareto a la calidad</li>
+              <li>Manual de Control de Calidad (1951)</li>
+              <li>Concepto de "aptitud para el uso"</li>
+              <li>Enfoque en el rol de la alta dirección en calidad</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-balance-scale"></i></div>
+      </div>
+
+      <!-- Feigenbaum -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1956</div>
+          <h2 class="timeline-title">Armand V. Feigenbaum</h2>
+          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/armand-v-feigenbaum/_jcr_content/par/articlebody/image.img.jpg/1540927733552.jpg" class="timeline-image" alt="Armand Feigenbaum">
+          <p class="timeline-desc">Introdujo el concepto de Control Total de Calidad (TQC), proponiendo que la calidad es responsabilidad de todos los departamentos y de toda la gente de la empresa, no solo del departamento de calidad. Su libro "Total Quality Control" se convirtió en un texto fundamental. Feigenbaum enfatizó que la calidad debía comenzar con el diseño del producto y terminar solo cuando el producto estuviera en manos de un cliente satisfecho.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Concepto de Control Total de Calidad (TQC)</li>
+              <li>Calidad como responsabilidad de toda la organización</li>
+              <li>Los 19 pasos para el mejoramiento de la calidad</li>
+              <li>Énfasis en la medición de costos de calidad</li>
+              <li>Integración de calidad en todas las funciones</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-clipboard-list"></i></div>
+      </div>
+
+      <!-- Ishikawa -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1960</div>
+          <h2 class="timeline-title">Kaoru Ishikawa</h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Kaoru_Ishikawa.jpg/800px-Kaoru_Ishikawa.jpg" class="timeline-image" alt="Ishikawa">
+          <p class="timeline-desc">Creador del diagrama de causa-efecto (espina de pescado o diagrama de Ishikawa). Impulsó los círculos de calidad y la idea de que "el siguiente proceso es tu cliente". Promovió la participación de todos los empleados en el mejoramiento de la calidad y enfatizó que la calidad comienza con la educación. Ishikawa fue fundamental en el desarrollo del enfoque de calidad japonés y popularizó las 7 herramientas básicas de calidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Diagrama de causa-efecto (espina de pescado)</li>
+              <li>Círculos de calidad</li>
+              <li>Las 7 herramientas básicas de calidad</li>
+              <li>Enfoque company-wide quality control</li>
+              <li>Filosofía de "la siguiente operación es tu cliente"</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-project-diagram"></i></div>
+      </div>
+
+      <!-- Crosby -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1979</div>
+          <h2 class="timeline-title">Philip B. Crosby</h2>
+          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/philip-b-crosby/_jcr_content/par/articlebody/image.img.jpg/1540927733718.jpg" class="timeline-image" alt="Philip Crosby">
+          <p class="timeline-desc">Popularizó conceptos como "Calidad es Cumplimiento de Requisitos", "Cero Defectos" y "La calidad es gratis". Su enfoque se centraba en la prevención más que en la detección, argumentando que los costos de prevención son menores que los costos de fallas. Su libro "Quality is Free" se convirtió en un best-seller. Crosby propuso que hacer las cosas bien desde el principio siempre es más económico que corregir errores después.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Concepto de "Cero Defectos"</li>
+              <li>"La calidad es gratis" (Quality is Free)</li>
+              <li>Los 4 absolutos de la calidad</li>
+              <li>Énfasis en la prevención sobre la inspección</li>
+              <li>Medición de calidad mediante el precio del incumplimiento</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-dollar-sign"></i></div>
+      </div>
+
+      <!-- Taguchi -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1980</div>
+          <h2 class="timeline-title">Genichi Taguchi</h2>
+          <img src="https://asq.org/qualityprogress/2018/06/faces-of-quality/genichi-taguchi/_jcr_content/par/articlebody/image.img.jpg/1540927733661.jpg" class="timeline-image" alt="Genichi Taguchi">
+          <p class="timeline-desc">Desarrolló la función de pérdida de Taguchi, que cuantifica la pérdida financiera que sufre la sociedad cuando un producto se desvía de su objetivo de calidad. Promovió el diseño robusto de productos y procesos que sean insensibles a factores ambientales y de variación, reduciendo costos y mejorando calidad. Los métodos de Taguchi revolucionaron el diseño de experimentos en ingeniería de calidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Función de pérdida de calidad</li>
+              <li>Diseño robusto de parámetros</li>
+              <li>Diseño de experimentos para mejorar calidad</li>
+              <li>Control de calidad en la etapa de diseño</li>
+              <li>Enfoque en la reducción de variabilidad</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-flask"></i></div>
+      </div>
+
+      <!-- Metodologías modernas -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1990 - 2025</div>
+          <h2 class="timeline-title">Metodologías Modernas</h2>
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" class="timeline-image" alt="Lean Six Sigma">
+          <p class="timeline-desc">Se consolidan estándares como ISO 9001, Six Sigma, Lean Manufacturing, TQM y metodologías ágiles que priorizan mejora continua, reducción de desperdicios y satisfacción del cliente. La calidad evoluciona hacia enfoques integrales que consideran sostenibilidad, experiencia del cliente y adaptabilidad en entornos VUCA (Volátiles, Inciertos, Complejos y Ambiguos). La era digital incorpora analítica de datos, inteligencia artificial y automatización en los sistemas de gestión de calidad.</p>
+          <div class="timeline-contributions">
+            <h3>Principales contribuciones:</h3>
+            <ul>
+              <li>Six Sigma (reducción de variación)</li>
+              <li>Lean Manufacturing (eliminación de desperdicios)</li>
+              <li>Normas ISO 9000 y otras normas de sistemas de gestión</li>
+              <li>Integración de calidad con sostenibilidad y responsabilidad social</li>
+              <li>Enfoques ágiles y adaptativos para gestión de calidad</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-icon"><i class="fas fa-lightbulb"></i></div>
+      </div>
+
+    </div>
+
+    <footer>
+      <p>© 2025 - Línea de Tiempo sobre Evolución de la Calidad</p>
+      <p>Trabajo académico mejorado - Creatividad y profundidad añadidas</p>
+    </footer>
+  </div>
+
+  <script>
+    // Animación de aparición de elementos al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      
+      function checkVisibility() {
+        timelineItems.forEach(item => {
+          const position = item.getBoundingClientRect();
+          
+          // Si el elemento está visible en la ventana
+          if(position.top < window.innerHeight - 100) {
+            item.classList.add('visible');
+          }
         });
-    </script>
+      }
+      
+      // Verificar visibilidad al cargar y al hacer scroll
+      checkVisibility();
+      window.addEventListener('scroll', checkVisibility);
+    });
+  </script>
 </body>
 </html>
